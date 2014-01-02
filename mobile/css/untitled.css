@@ -1,0 +1,45 @@
+
+
+.accordion-inner{
+	background-color:#FFF;
+		width:80%;
+	margin-left:10%;
+	marginright:10%;
+	text-align:center;
+	padding-left:2%;
+	padding-right:2%;
+	
+}
+
+.accordion-inner a{
+		color: #333
+	
+}
+
+a{
+	color:#FFF;}
+	
+	
+
+a:focus {
+	color: #333;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #333;
+	text-decoration: none;
+	
+}	
+
+
+#full-screen-background-image {
+  z-index: -999;
+  min-height: 100%;
+  min-width: 1024px;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+}

@@ -1,9 +1,9 @@
 (function(window, $, undefined){
 
     //~~~~~~~~~~~~~~~~~~~~~TOGGLE VARIOUS UI ELEMENTS OFF FOR INITIAL LOAD~~~~~~~~~~~~~~~~~~~\\
-    
-    
+    var i = 1;
 
+  
     //~~~~~~~~~~~~~~~~~~INITIATE PARALLAX BACKGROUND~~~~~~~~~~~~~~~~~~~~~~~\\
     var ua = navigator.userAgent,
       isMobileWebkit = /WebKit/.test(ua) && /Mobile/.test(ua);
@@ -24,6 +24,9 @@
       $(".zoom").toggle();
       $('#ctaNot_button').toggle();
       $('.sub_form').toggle();
+      for(i = 1; i<10; i++){
+        $('#project_'+ i +'').toggle()
+      }
       window.onload = function(){
         initPreload();
       }
@@ -78,7 +81,6 @@
     var name_key = [berryCollege, sherwoodMemorialPark, davidsonCollege, midlothianResidence, fountainsAndFeatures, blandyArboretum, charlottesvilleAmphitheatre, wintergreenResort, emoryAndHenryCollege];
 
     //
-    var i = 1;
     var thisZoom = {};
     function initPreload() {
      for (i = 0; i<name_key.length; i++){
@@ -94,6 +96,12 @@
         img4.src = "./assets/graphics/grid_images/"+thisZoom.name+"/"+thisZoom.name+"_content_4.jpg";
 
         name_key[i].images = [img1, img2, img3, img4];
+
+        if((i+1) % 3 == 0){
+          $('#project_'+ (i-1) + '').toggle();
+          $('#project_'+ (i) + '').toggle();
+          $('#project_'+ (i+1) + '').toggle();
+        }
      }
     }
     

@@ -80,10 +80,18 @@
     }
     var name_key = [berryCollege, sherwoodMemorialPark, davidsonCollege, midlothianResidence, fountainsAndFeatures, blandyArboretum, charlottesvilleAmphitheatre, wintergreenResort, emoryAndHenryCollege];
 
-    //
-    var thisZoom = {};
+    //~~~~~~~~~~~~~~~~~~~~~PRELOAD GIRD IMAGES AND DISPLAY ROW BY ROW~~~~~~~~~~~~~\\
+
+    function showRow(_projectIndex){
+      $('#project_'+ (_projectIndex-2) + '').toggle();
+      $('#project_'+ (_projectIndex-1) + '').toggle();
+      $('#project_'+ _projectIndex + '').toggle();
+    }
+
     function initPreload() {
-     for (i = 0; i<name_key.length; i++){
+      var thisZoom = {};
+      var projectIndex = 1;
+      for (i = 0; i<name_key.length; i++){
         thisZoom = name_key[i];
         img1 = new Image();
         img2 = new Image();
@@ -97,10 +105,9 @@
 
         name_key[i].images = [img1, img2, img3, img4];
 
+        projectIndex = i + 1;
         if((i+1) % 3 == 0){
-          $('#project_'+ (i-1) + '').toggle();
-          $('#project_'+ (i) + '').toggle();
-          $('#project_'+ (i+1) + '').toggle();
+          img4.onload = showRow(projectIndex);
         }
      }
     }

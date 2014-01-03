@@ -9,6 +9,11 @@
       isMobileWebkit = /WebKit/.test(ua) && /Mobile/.test(ua);
     if (isMobileWebkit) {
       $('body').addClass('noparallax');
+      //$('#section_header').toggle();
+      //$('#section_about').toggle();
+      //$('#section_services').toggle();
+      //$('#section_plan').toggle();
+      //$('#section_contact').toggle();
     }
     else{
       $.stellar({
@@ -158,20 +163,25 @@
   				alert("Email doesnt match!");
   				return;
   			}
-  			else{  			
+  			else{  		
+          console.log('ajax called');	
   				$.ajax({
 				    type: "POST",
 				    url: "./assets/php/email_v2.php",
 				    data: form,
 				    async: false,
 				    success: function(res){
-				        if(res.indexOf(":") < 0){
-                  alert("Thank you, we'll be in touch shortly.")
+				        if(res.indexOf("!") > 0){
+                  alert("Thank you, we'll be in touch shortly.");
                 }
                 else{
-                  alert("Oops, looks like out email is down!")
+                  alert("Oops, looks like out email is down!");
                 }
 				    },
+            error: function(res){
+              alert("error");
+              console.log(res);
+            },
 				    cache: false,
 	                contentType: false,
 	                processData: false

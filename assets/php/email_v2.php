@@ -5,7 +5,7 @@
 	//Create a new PHPMailer instance
 	$mail = new PHPMailer;
 	//Set who the message is to be sent from
-	$mail->setFrom('greenspacestudio@aseriesoftubes.algore', 'greenspacestudiodotnet');
+	$mail->setFrom($_REQUEST["contact_name"], 'greenspacestudiodotnet');
 	//Set an alternative reply-to address
 	$mail->addReplyTo($_REQUEST["contact_email"], $_REQUEST["contact_name"]);
 	//Set who the message is to be sent to

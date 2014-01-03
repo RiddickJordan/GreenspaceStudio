@@ -1,15 +1,24 @@
 (function(window, $, undefined){
 
     //~~~~~~~~~~~~~~~~~~~~~TOGGLE VARIOUS UI ELEMENTS OFF FOR INITIAL LOAD~~~~~~~~~~~~~~~~~~~\\
-    $(".zoom").toggle();
-    $('.sub_form').toggle();
-    $('#ctaNot_button').toggle();
+    
+    
 
     //~~~~~~~~~~~~~~~~~~INITIATE PARALLAX BACKGROUND~~~~~~~~~~~~~~~~~~~~~~~\\
-    $.stellar({
+    var ua = navigator.userAgent,
+      isMobileWebkit = /WebKit/.test(ua) && /Mobile/.test(ua);
+    if (isMobileWebkit) {
+      $('body').addClass('noparallax');
+    }
+    else{
+      $.stellar({
           horizontalScrolling: false,
           verticalOffset: 0
-      });    
+      });
+      $(".zoom").toggle();
+      $('#ctaNot_button').toggle();
+      $('.sub_form').toggle();
+    } 
 
     //~~~~~~~~~~~~~~~~~~~~~~~~GRID ZOOM CONTENT~~~~~~~~~~~~~~~~~~~~~~\\
     var berryCollege = {

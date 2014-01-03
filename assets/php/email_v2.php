@@ -21,7 +21,7 @@
 	    }
 	}
 	//gather text inputs
-	$mail->Body .= 'Other styles: ' . $_REQUEST["style_other"] . '<br /> Plans liked: ' . $_REQUEST["plans_like"] . '<br /> Plans disliked: ' . $_REQUEST["plans_disliked"] . '<br /> Preferred materials: <br />';
+	$mail->Body .= 'Other styles: ' . $_REQUEST["style_other"] . '<br /> Plans liked: ' . $_REQUEST["plants_like"] . '<br /> Plans disliked: ' . $_REQUEST["platns_disliked"] . '<br /> Preferred materials: <br />';
 	//Loop through checkboxes
 	if(!empty($_REQUEST['materials_list'])) {
     foreach($_REQUEST['materials_list'] as $check) {

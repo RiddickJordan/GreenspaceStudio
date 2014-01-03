@@ -9,6 +9,7 @@
       isMobileWebkit = /WebKit/.test(ua) && /Mobile/.test(ua);
     if (isMobileWebkit) {
       $('body').addClass('noparallax');
+      $('.noMobile').remove();
       //$('#section_header').toggle();
       //$('#section_about').toggle();
       //$('#section_services').toggle();
@@ -23,6 +24,9 @@
       $(".zoom").toggle();
       $('#ctaNot_button').toggle();
       $('.sub_form').toggle();
+      window.onload = function(){
+        initPreload();
+      }
     } 
 
     //~~~~~~~~~~~~~~~~~~~~~~~~GRID ZOOM CONTENT~~~~~~~~~~~~~~~~~~~~~~\\
@@ -76,7 +80,7 @@
     //
     var i = 1;
     var thisZoom = {};
-    window.onload = function(){
+    function initPreload() {
      for (i = 0; i<name_key.length; i++){
         thisZoom = name_key[i];
         img1 = new Image();
@@ -171,11 +175,12 @@
 				    data: form,
 				    async: false,
 				    success: function(res){
-				        if(res.indexOf("!") > 0){
+				        if(res.indexOf(":") < 0){
                   alert("Thank you, we'll be in touch shortly.");
                 }
                 else{
                   alert("Oops, looks like out email is down!");
+                  console.log(res);
                 }
 				    },
             error: function(res){

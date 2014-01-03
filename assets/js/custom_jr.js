@@ -146,7 +146,7 @@
    	 	email = $('#contact_email').val();
   		if (regexEmail.test(email)){
   			if ( email != $('#contact_email_confirm').val()){
-  				alert("email doesnt match");
+  				alert("Email doesnt match!");
   				return;
   			}
   			else{  			
@@ -157,7 +157,7 @@
 				    async: false,
 				    success: function(res){
 				        if(res.indexOf(":") < 0){
-                  alert("Submission Recieved!")
+                  alert("Thank you, we'll be in touch shortly.")
                 }
                 else{
                   alert("Oops, looks like out email is down!")

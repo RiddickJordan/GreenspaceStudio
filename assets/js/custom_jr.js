@@ -91,8 +91,8 @@
         preloadRow(_projectIndex);
       }
     }
-    console.log("name key length is " + name_key.length);
-    var lastImageInRow = Image();
+
+    var lastImageInRow; //should this be decliared as an image?
     function preloadRow(_startingIndex) {
       var thisZoom = {};
       var projectIndex = 1;
@@ -119,7 +119,6 @@
 
           name_key[i].images = [img1, img2, img3, img4];
       }
-      
     }
     
     //~~~~~~~~~~~~~~~~~~POPULATE ZOOM SLIDESHOW~~~~~~~~~~~~~~~~~\\

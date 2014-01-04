@@ -28,7 +28,7 @@
         $('#project_'+ i +'').toggle()
       }
       window.onload = function(){
-        initPreload();
+        preloadRow(0);
       }
     } 
 
@@ -83,33 +83,43 @@
     //~~~~~~~~~~~~~~~~~~~~~PRELOAD GIRD IMAGES AND DISPLAY ROW BY ROW~~~~~~~~~~~~~\\
 
     function showRow(_projectIndex){
+      console.log("showRow " + _projectIndex);
       $('#project_'+ (_projectIndex-2) + '').toggle();
       $('#project_'+ (_projectIndex-1) + '').toggle();
       $('#project_'+ _projectIndex + '').toggle();
+      if(_projectIndex < name_key.length){
+        preloadRow(_projectIndex);
+      }
     }
-
-    function initPreload() {
+    console.log("name key length is " + name_key.length);
+    var lastImageInRow = Image();
+    function preloadRow(_startingIndex) {
       var thisZoom = {};
       var projectIndex = 1;
-      for (i = 0; i<name_key.length; i++){
-        thisZoom = name_key[i];
-        img1 = new Image();
-        img2 = new Image();
-        img3 = new Image();
-        img4 = new Image();
+      for (i = _startingIndex; i < (_startingIndex+3); i++){
+          thisZoom = name_key[i];
+          img1 = new Image();
+          img2 = new Image();
+          img3 = new Image();
+          img4 = new Image();
 
-        img1.src = "./assets/graphics/grid_images/"+thisZoom.name+"/"+thisZoom.name+"_content_1.jpg";
-        img2.src = "./assets/graphics/grid_images/"+thisZoom.name+"/"+thisZoom.name+"_content_2.jpg";
-        img3.src = "./assets/graphics/grid_images/"+thisZoom.name+"/"+thisZoom.name+"_content_3.jpg";
-        img4.src = "./assets/graphics/grid_images/"+thisZoom.name+"/"+thisZoom.name+"_content_4.jpg";
+          projectIndex = i + 1;
+          if(projectIndex % 3 === 0){
+            img3.onload = function(_projectIndex){
+              return function(){
+                showRow(_projectIndex);
+              }
+            }(projectIndex);
+          }
 
-        name_key[i].images = [img1, img2, img3, img4];
+          img1.src = "./assets/graphics/grid_images/"+thisZoom.name+"/"+thisZoom.name+"_content_1.jpg";
+          img2.src = "./assets/graphics/grid_images/"+thisZoom.name+"/"+thisZoom.name+"_content_2.jpg";
+          img3.src = "./assets/graphics/grid_images/"+thisZoom.name+"/"+thisZoom.name+"_content_3.jpg";
+          img4.src = "./assets/graphics/grid_images/"+thisZoom.name+"/"+thisZoom.name+"_content_4.jpg";
 
-        projectIndex = i + 1;
-        if((i+1) % 3 == 0){
-          img4.onload = showRow(projectIndex);
-        }
-     }
+          name_key[i].images = [img1, img2, img3, img4];
+      }
+      
     }
     
     //~~~~~~~~~~~~~~~~~~POPULATE ZOOM SLIDESHOW~~~~~~~~~~~~~~~~~\\

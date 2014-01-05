@@ -50,7 +50,7 @@
     }
     var midlothianResidence = {
       name:'midlothianResidence',
-      heads:['Deck pergola', 'Deck pergola', 'Before', 'Fountain'],
+      heads:['Deck pergola', 'Deck pergola', 'Site plan', 'Koi pond'],
       captions:['Deck and koi pond', 'Deck and koi pond', '', 'Deck level founitain']
     }
     var fountainsAndFeatures = {

@@ -92,6 +92,10 @@ body:not(.noparallax) #section_contact { bottom: 0; }
 	
 }
 
+.noparallax .headers h1{
+	padding:20px 20px 10px 20px;
+}
+
 #title{
 	border:none;
 	padding:0;
@@ -109,6 +113,10 @@ h3{
 	font-family:  din_bold !important;
 	font-size: 17px;
 	margin:0 0 70px 0;
+}
+
+.noparallax h3{
+	text-align: center;
 }
 
 h4{
@@ -135,7 +143,7 @@ h6{
 p{
 	font-family:  din_regular !important;
 	font-size: 24px;
-	margin:0 0 20px 0;
+	//margin:0 0 20px 0;
 }
 
 .carousel-control span{
@@ -302,6 +310,8 @@ input[type='text'] {
 	float:right;
 }
 
+
+
 textarea {
 	resize:none;
 	width:100%;
@@ -314,14 +324,19 @@ textarea {
 	padding:3px;	
 }
 
+.noparallax #cta_button{
+	width:100%;
+}
 
 .contact_details a,  .contact_details a:link,  .contact_details a:visited,  .contact_details a:hover,  .contact_details a:active{
 	font-family: din_regular !important;
-	color: #000;
+	//margin:0 auto;
+	width: 100%;
+	/*color: #000;
 	font-size: 12px;
 	border:none;
 	text-decoration:none;
-	padding:0;
+	padding:0;*/
 }
 
 #contact_foot div{

@@ -2,7 +2,8 @@
 
     //~~~~~~~~~~~~~~~~~~~~~TOGGLE VARIOUS UI ELEMENTS OFF FOR INITIAL LOAD~~~~~~~~~~~~~~~~~~~\\
     var i = 1;
-
+    $('.sub_form').toggle();
+    $('#ctaNot_button').toggle();
   
     //~~~~~~~~~~~~~~~~~~INITIATE PARALLAX BACKGROUND~~~~~~~~~~~~~~~~~~~~~~~\\
     var ua = navigator.userAgent,
@@ -10,6 +11,7 @@
     if (isMobileWebkit) {
       $('body').addClass('noparallax');
       $('.noMobile').remove();
+      $('#ctaNot_button').html("<span class='glyphicon glyphicon-remove'></span>");
       //$('#section_header').toggle();
       //$('#section_about').toggle();
       //$('#section_services').toggle();
@@ -22,8 +24,6 @@
           verticalOffset: 0
       });
       $(".zoom").toggle();
-      $('#ctaNot_button').toggle();
-      $('.sub_form').toggle();
       for(i = 1; i<10; i++){
         $('#project_'+ i +'').toggle()
       }

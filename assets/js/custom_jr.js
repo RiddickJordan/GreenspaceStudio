@@ -75,8 +75,8 @@
     }
     var emoryAndHenryCollege = {
       name:'emoryAndHenryCollege',
-      heads:['Entry gateway', 'New brinck walkways', 'Master plan', 'Terrace overlook seatwall'],
-      captions:['New stone gate and walls based on historic', '', '', '']
+      heads:['Entry gateway', 'New brick walkways', 'Master plan', 'Terrace overlook seatwall'],
+      captions:['New stone gate and walls based on historic context', '', '', '']
     }
     var name_key = [berryCollege, sherwoodMemorialPark, davidsonCollege, midlothianResidence, fountainsAndFeatures, blandyArboretum, charlottesvilleAmphitheatre, wintergreenResort, emoryAndHenryCollege];
 

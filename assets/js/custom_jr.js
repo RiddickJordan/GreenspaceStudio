@@ -1,100 +1,62 @@
 (function(window, $, undefined){
-
-    //~~~~~~~~~~~~~~~~~~~~~TOGGLE VARIOUS UI ELEMENTS OFF FOR INITIAL LOAD~~~~~~~~~~~~~~~~~~~\\
-    var i = 1;
-    $('.sub_form').toggle();
-    $('#ctaNot_button').toggle();
-  
-    //~~~~~~~~~~~~~~~~~~INITIATE PARALLAX BACKGROUND~~~~~~~~~~~~~~~~~~~~~~~\\
-    var ua = navigator.userAgent,
-      isMobileWebkit = /WebKit/.test(ua) && /Mobile/.test(ua);
-    if (isMobileWebkit) {
-      $('body').addClass('noparallax');
-      $('.noMobile').remove();
-      $('#ctaNot_button').html("<span class='glyphicon glyphicon-remove'></span>");
-      //$('#section_header').toggle();
-      //$('#section_about').toggle();
-      //$('#section_services').toggle();
-      //$('#section_plan').toggle();
-      //$('#section_contact').toggle();
-    }
-    else{
-      $.stellar({
-          horizontalScrolling: false,
-          verticalOffset: 0
-      });
-      $(".zoom").toggle();
-      for(i = 1; i<10; i++){
-        $('#project_'+ i +'').toggle()
-      }
-      window.onload = function(){
-        preloadRow(0);
-      }
-    } 
-
     //~~~~~~~~~~~~~~~~~~~~~~~~GRID ZOOM CONTENT~~~~~~~~~~~~~~~~~~~~~~\\
     var berryCollege = {
       name:'berryCollege',
       heads:['Oak Hill Garden', 'Oak Hill Garden', 'Cage Recreation Center', 'Cage Recreation Center'],
       captions:['Landscape and maintenance plan', 'Landscape and maintenance plan', 'Site, landscape, and fountain design', 'Site, landscape, and fountain design']
-    }
+    };
     var sherwoodMemorialPark = {
       name:'sherwoodMemorialPark',
       heads:['Mausoleum', 'Mausoleum', 'Mausoleum', 'Mausoleum'],
       captions:['With paperbank maple allee', 'With osage orange grove', 'With grass roof', 'Site plan']
-    }
+    };
     var davidsonCollege = {
       name:'davidsonCollege',
       heads:['College union', 'Historic core', 'Richardson Plaze', 'Athletic building'],
       captions:['Amphitheatre entry', 'Walkway - fire road', 'paved plaza reworked as greenspace', 'Plaza - road - crosswalk']
-    }
+    };
     var midlothianResidence = {
       name:'midlothianResidence',
       heads:['Deck pergola', 'Deck pergola', 'Site plan', 'Koi pond'],
       captions:['Deck and koi pond', 'Deck and koi pond', '', 'Deck level founitain']
-    }
+    };
     var fountainsAndFeatures = {
       name:'fountainsAndFeatures',
       heads:['Custom gurgle fountain', 'Custom sculptural fountain', 'Koi and fish pond', 'Stacked wood wall'],
       captions:['Drilled river rock and slate', 'Drilled river rock and slate', '', '']
-    }
+    };
     var blandyArboretum = {
       name:'blandyArboretum',
       heads:['Stone walls', 'amphitheatre shape', 'proposed wildflower terrace design', 'fourth'],
       captions:['Define shape and create levels', 'creates large and small scall seating areas', '', '']
-    }
+    };
     var charlottesvilleAmphitheatre = {
       name:'charlottesvilleAmphitheatre',
       heads:['mall terminus seatwall', 'Wall showing undulating landform', 'Site plan proposal', 'Site plan details'],
       captions:['', '', '', '']
-    }
+    };
     var wintergreenResort = {
       name:'wintergreenResort',
       heads:['Main entry sign panel', 'Terrace walkway and kiosk', 'Terrace and stage design', 'Terrace overlook seatwall'],
       captions:['', '', '', '']
-    }
+    };
     var emoryAndHenryCollege = {
       name:'emoryAndHenryCollege',
       heads:['Entry gateway', 'New brick walkways', 'Master plan', 'Proposed amphitheatre and meadow'],
       captions:['New stone gate and walls based on historic context', '', '', '']
-    }
+    };
     var name_key = [berryCollege, sherwoodMemorialPark, davidsonCollege, midlothianResidence, fountainsAndFeatures, blandyArboretum, charlottesvilleAmphitheatre, wintergreenResort, emoryAndHenryCollege];
 
     //~~~~~~~~~~~~~~~~~~~~~PRELOAD GIRD IMAGES AND DISPLAY ROW BY ROW~~~~~~~~~~~~~\\
 
-    function showRow(_projectIndex){
-      $('#project_'+ (_projectIndex-2) + '').toggle();
-      $('#project_'+ (_projectIndex-1) + '').toggle();
-      $('#project_'+ _projectIndex + '').toggle();
-      if(_projectIndex < name_key.length){
-        preloadRow(_projectIndex);
-      }
-    }
 
+
+    var i = 1;
     var lastImageInRow; //should this be decliared as an image?
     function preloadRow(_startingIndex) {
       var thisZoom = {};
       var projectIndex = 1;
+      var img1, img2, img3, img4;
       for (i = _startingIndex; i < (_startingIndex+3); i++){
           thisZoom = name_key[i];
           img1 = new Image();
@@ -107,7 +69,7 @@
             img3.onload = function(_projectIndex){
               return function(){
                 showRow(_projectIndex);
-              }
+              };
             }(projectIndex);
           }
 
@@ -119,6 +81,17 @@
           name_key[i].images = [img1, img2, img3, img4];
       }
     }
+
+     function showRow(_projectIndex){
+      $('#project_'+ (_projectIndex-2)).toggle();
+      $('#project_'+ (_projectIndex-1)).toggle();
+      $('#project_'+ _projectIndex).toggle();
+      if(_projectIndex < name_key.length){
+        preloadRow(_projectIndex);
+      }
+    }   
+
+    
     
     //~~~~~~~~~~~~~~~~~~POPULATE ZOOM SLIDESHOW~~~~~~~~~~~~~~~~~\\
     $(".grid div").not(".clearfix").click(function(){
@@ -189,32 +162,58 @@
   				alert("Email doesnt match!");
   				return;
   			}
-  			else{  		
-  				$.ajax({
-				    type: "POST",
-				    url: "./assets/php/email_v2.php",
-				    data: form,
-				    async: false,
-				    success: function(res){
-				        if(res.indexOf(":") < 0){
-                  alert("Thank you, we'll be in touch shortly.");
-                }
-                else{
-                  alert("Oops, looks like out email is down!");
-                }
-				    },
-            error: function(res){
-              alert("error");
-            },
-				    cache: false,
-	                contentType: false,
-	                processData: false
-				});
-  			}
+				$.ajax({
+			    type: "POST",
+			    url: "./assets/php/email_v2.php",
+			    data: form,
+			    async: false,
+			    success: function(res){
+			        if(res.indexOf(":") < 0){
+                alert("Thank you, we'll be in touch shortly.");
+              }
+              else{
+                alert("Oops, looks like out email is down!");
+              }
+			    },
+          error: function(res){
+            alert("error");
+          },
+			    cache: false,
+                contentType: false,
+                processData: false
+			});
   		}
   		else{
   			alert("email address invalid");	
   			return;
   		}
-    });    
+    }); 
+
+         //~~~~~~~~~~~~~~~~~~~~~TOGGLE VARIOUS UI ELEMENTS OFF FOR INITIAL LOAD~~~~~~~~~~~~~~~~~~~\\
+    $('.sub_form').toggle();
+    $('#ctaNot_button').toggle();
+  
+    //~~~~~~~~~~~~~~~~~~INITIATE PARALLAX BACKGROUND~~~~~~~~~~~~~~~~~~~~~~~\\
+    var ua = navigator.userAgent,
+      isMobileWebkit = /WebKit/.test(ua) && /Mobile/.test(ua);
+    if (isMobileWebkit) {
+      $('body').addClass('noparallax');
+      $('.noMobile').remove();
+      $('#ctaNot_button').html("<span class='glyphicon glyphicon-remove'></span>");
+    }
+    else{
+      $.stellar({
+          horizontalScrolling: false,
+          verticalOffset: 0
+      });
+      $(".zoom").toggle();
+      for(i = 1; i<10; i++){
+        $('#project_'+ i +'').toggle();
+      }
+      window.onload = function(){
+        preloadRow(0);
+      };
+    } 
+
+
  })(window, jQuery);
